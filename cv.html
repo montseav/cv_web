@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum TI/ Montserrat Alpízar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .portfolio {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="white" stop-opacity="0.1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient></defs><rect width="100" height="20" fill="url(%23a)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            margin: 0 auto 30px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .name-section {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+            margin-bottom: 30px;
+        }
+
+        .name-emoji {
+            font-size: 4em;
+            margin-bottom: 15px;
+            display: block;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .name {
+            font-size: 3em;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px 40px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #3498db;
+            animation: slideInUp 0.8s ease-out both;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: #3498db;
+            font-size: 1.2em;
+        }
+
+        .profile-section {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.9), rgba(233, 236, 239, 0.9));
+            border-left: 5px solid #00b4d8;
+        }
+
+        .profile-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .tech-skills {
+            list-style: none;
+        }
+
+        .tech-skill {
+            background: rgba(248, 249, 250, 0.9);
+            padding: 12px 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #17a2b8;
+            transition: all 0.3s ease;
+        }
+
+        .tech-skill:hover {
+            background: rgba(233, 236, 239, 0.9);
+            transform: translateX(5px);
+        }
+
+        .tech-skill strong {
+            color: #2c3e50;
+        }
+
+        .education-item {
+            background: rgba(248, 249, 250, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #00b4d8;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            background: rgba(233, 236, 239, 0.9);
+            transform: translateX(5px);
+        }
+
+        .education-title {
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .education-institution {
+            color: #00b4d8;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .education-year {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(248, 249, 250, 0.9);
+            padding: 15px 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff9999;
+        }
+
+        .language-level {
+            background: linear-gradient(135deg, #ff9999, #ffb3b3);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        /* Sección de proyectos optimizada */
+        .projects-section {
+            border-left: 5px solid #00b4d8;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: slideInUp 0.8s ease-out both;
+            animation-delay: 0.5s;
+            min-height: auto;
+        }
+
+        .projects-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .projects-toggle {
+            display: none;
+        }
+
+        .projects-toggle-label {
+            background: linear-gradient(135deg, #00b4d8, #0077be);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            user-select: none;
+            margin-bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+        }
+
+        .projects-toggle-label:hover {
+            background: linear-gradient(135deg, #0077be, #005580);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 180, 216, 0.3);
+        }
+
+        .projects-toggle-label::after {
+            content: "Ver Proyectos Desarrollados";
+            transition: all 0.3s ease;
+        }
+
+        .projects-toggle-label::before {
+            content: "▼";
+            transition: transform 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .projects-container {
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            max-height: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .projects-toggle:checked + .projects-toggle-label::after {
+            content: "Ocultar Proyectos";
+        }
+
+        .projects-toggle:checked + .projects-toggle-label::before {
+            content: "▲";
+            transform: rotate(180deg);
+        }
+
+        .projects-toggle:checked ~ .projects-container {
+            opacity: 1;
+            max-height: 2000px;
+            padding: 25px 0 0 0;
+            margin-top: 0;
+        }
+
+        .project-item {
+            background: linear-gradient(135deg, rgba(230, 247, 255, 0.9), rgba(184, 230, 255, 0.9));
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 4px solid #00b4d8;
+            transition: all 0.3s ease;
+            transform: translateY(10px);
+            opacity: 0;
+            box-shadow: 0 4px 12px rgba(0, 180, 216, 0.1);
+        }
+
+        .project-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .projects-toggle:checked ~ .projects-container .project-item {
+            animation: projectSlideIn 0.6s ease-out forwards;
+        }
+
+        .projects-toggle:checked ~ .projects-container .project-item:nth-child(1) { animation-delay: 0.1s; }
+        .projects-toggle:checked ~ .projects-container .project-item:nth-child(2) { animation-delay: 0.2s; }
+        .projects-toggle:checked ~ .projects-container .project-item:nth-child(3) { animation-delay: 0.3s; }
+        .projects-toggle:checked ~ .projects-container .project-item:nth-child(4) { animation-delay: 0.4s; }
+        .projects-toggle:checked ~ .projects-container .project-item:nth-child(5) { animation-delay: 0.5s; }
+        .projects-toggle:checked ~ .projects-container .project-item:nth-child(6) { animation-delay: 0.6s; }
+
+        .project-item:hover {
+            background: linear-gradient(135deg, rgba(184, 230, 255, 0.9), rgba(143, 212, 255, 0.9));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 180, 216, 0.2);
+        }
+
+        .project-title {
+            font-weight: 700;
+            color: #005580;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .project-description {
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+        }
+
+        .project-tech {
+            background: #00b4d8;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0, 180, 216, 0.3);
+        }
+
+      
+        /* Animaciones */
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1); 
+                opacity: 0.08;
+            }
+            25% { 
+                transform: translateY(-15px) rotate(90deg) scale(1.1); 
+                opacity: 0.15;
+            }
+            50% { 
+                transform: translateY(-25px) rotate(180deg) scale(0.9); 
+                opacity: 0.12;
+            }
+            75% { 
+                transform: translateY(-10px) rotate(270deg) scale(1.05); 
+                opacity: 0.10;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes projectSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 40px 20px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .name {
+                font-size: 2.2em;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .name-emoji {
+                font-size: 3em;
+            }
+
+            .projects-section {
+                padding: 20px;
+            }
+            
+            .projects-toggle-label {
+                font-size: 1em;
+                padding: 12px 18px;
+            }
+            
+            .project-item {
+                padding: 15px;
+            }
+            
+            .project-title {
+                font-size: 1em;
+            }
+            
+            .project-description {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="portfolio">
+            <header class="header">
+                <div class="name-section">
+                    <span class="name-emoji">👩🏼‍💻</span>
+                    <h1 class="name">Montserrat Alpízar Vega</h1>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        🖂 
+                        <span>valpizarmontse@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        ☏
+                        <span>8952-6253</span>
+                    </div>
+                    <div class="contact-item">
+                        ⚲
+                        <span>San José, Tibás</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="main-content">
+                <section class="section profile-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-user-circle"></i>
+                        Perfil Personal
+                    </h2>
+                    <p class="profile-text">
+                        Estudiante comprometida en el área de Tecnologías de la Información, con habilidades en liderazgo y enfoque en la solución de proyectos tecnológicos. Me motiva trabajar en el desarrollo de soluciones que respondan a las necesidades reales de los usuarios y las empresas, aportando valor con eficiencia, empatía y visión funcional. Me destaco por mi responsabilidad, proactividad y capacidad de trabajo en equipo.
+                    </p>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-star"></i>
+                        Aptitudes
+                    </h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">Trabajo en equipo</div>
+                        <div class="skill-item">Liderazgo</div>
+                        <div class="skill-item">Resolución de problemas</div>
+                        <div class="skill-item">Comunicación asertiva</div>
+                        <div class="skill-item">Adaptabilidad</div>
+                        <div class="skill-item">Responsabilidad</div>
+                        <div class="skill-item">Competitividad</div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-code"></i>
+                        Habilidades Técnicas
+                    </h2>
+                    <ul class="tech-skills">
+                        <li class="tech-skill">
+                            <strong>Lenguajes:</strong> Python, Java, C#
+                        </li>
+                        <li class="tech-skill">
+                            <strong>Frameworks:</strong> .NET
+                        </li>
+                        <li class="tech-skill">
+                            <strong>Bases de Datos:</strong> SQL Server, MySQL, MongoDB
+                        </li>
+                        <li class="tech-skill">
+                            <strong>Herramientas:</strong> Visual Studio Code, Visual Studio, NetBeans
+                        </li>
+                        <li class="tech-skill">
+                            <strong>SO:</strong> Windows, Linux
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Educación y Certificaciones
+                    </h2>
+                    <div class="education-item">
+                        <div class="education-title">Diplomado en Tecnologías de la Información</div>
+                        <div class="education-institution">Colegio Universitario de Cartago</div>
+                        <div class="education-year">(En curso)</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-title">Bachillerato en Educación Media</div>
+                        <div class="education-institution">Secundaria Values in Action</div>
+                        <div class="education-year">(2022)</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-title">CCNA: Introducción a las Redes</div>
+                        <div class="education-institution">Cisco Networking Academy</div>
+                        <div class="education-year">(2024)</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-title">Constancia de nivel de inglés B2</div>
+                        <div class="education-institution">Escuela de Lenguas Modernas, UCR</div>
+                        <div class="education-year">(2022)</div>
+                    </div>
+                </section>
+
+                <section class="section projects-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-tools"></i>
+                        Proyectos Desarrollados
+                    </h2>
+                    
+                    <input type="checkbox" id="toggleProjects" class="projects-toggle">
+                    <label for="toggleProjects" class="projects-toggle-label"></label>
+
+                    <div class="projects-container">
+                        <div class="project-item">
+                            <div class="project-title">
+                                🔹 Sistema de control de vacaciones – Proyecto académico
+                                <span class="project-tech">C# • Windows Forms</span>
+                            </div>
+                            <div class="project-description">
+                                Creación de un sistema completo en <strong>C# con Windows Forms</strong> para el cálculo de vacaciones / Manejo de lógica compleja, validaciones, control de usuarios y almacenamiento en archivos XML.
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-title">
+                                🔹 Conexión y gestión de bases de datos
+                                <span class="project-tech">SQL Server • MySQL</span>
+                            </div>
+                            <div class="project-description">
+                                Experiencia práctica trabajando con <strong>SQL Server</strong> y <strong>MySQL Server</strong>, realizando conexiones desde interfaces, consultas complejas, inserciones y mantenimiento de datos desde entornos gráficos y código.
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-title">
+                                🔹 Inventario de perfumes – Proyecto académico
+                                <span class="project-tech">Python</span>
+                            </div>
+                            <div class="project-description">
+                                Desarrollo de una aplicación en <strong>Python</strong> para el registro y control de inventario de perfumes. Manejo de estructuras de datos, control por categorías y validación de stock.
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-title">
+                                🔹 Sistema bibliotecario – Proyecto académico
+                                <span class="project-tech">Java • NetBeans</span>
+                            </div>
+                            <div class="project-description">
+                                Desarrollo de un sistema de préstamo y devolución de libros en <strong>Java con NetBeans</strong>, utilizando interfaz gráfica. Gestión de usuarios, libros, historial de préstamos, y validación de fechas y sanciones. 
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-title">
+                                🔹 Replicación y Mirroring en SQL Server – Proyecto académico
+                                <span class="project-tech">SQL Server</span>
+                            </div>
+                            <div class="project-description">
+                                Simulación de replicación y alta disponibilidad configurando <strong>replication</strong> y <strong>mirroring</strong> en SQL Server. Configuración de instancias, sincronización de bases de datos y pruebas de failover.
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-title">
+                                🔹 MongoDB y Replica Sets – Proyecto académico
+                                <span class="project-tech">MongoDB • mongosh</span>
+                            </div>
+                            <div class="project-description">
+                                Configuración y prueba de <strong>conjuntos de réplicas (Replica Sets)</strong> en MongoDB mediante múltiples nodos simulados en diferentes puertos. Uso de <code>mongosh</code> para conexión, replicación y verificación de sincronización de datos.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-language"></i>
+                        Idiomas
+                    </h2>
+                    <div class="language-item">
+                        <span><strong>Inglés</strong></span>
+                        <span class="language-level">B2</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
